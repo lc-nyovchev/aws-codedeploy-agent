@@ -13,6 +13,7 @@ module InstanceAgent
         attr_accessor :external_account, :repository, :commit_id, :anonymous, :external_auth_token
         attr_accessor :file_exists_behavior
         attr_accessor :local_location, :all_possible_lifecycle_events
+        attr_accessor :app_spec_path
         class << self
           attr_accessor :cert_store
         end
@@ -46,6 +47,12 @@ module InstanceAgent
           @deployment_group_id = data["DeploymentGroupId"]
           @deployment_creator = data["DeploymentCreator"] || "user"
           @deployment_type = data["DeploymentType"] || "IN_PLACE"
+
+          if property_set?(data, "AppSpecPath")
+            @app_spec_path = data["AppSpecPath"]
+          else
+            @app_spec_path = "appspec.yml"
+          end
 
           raise 'Must specify a revison' unless data["Revision"]
           @revision_source = data["Revision"]["RevisionType"]
