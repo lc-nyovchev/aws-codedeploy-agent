@@ -480,7 +480,7 @@ module InstanceAgent
           app_spec_yml_location = File.join(archive_root_dir(deployment_spec), "appspec.yml")
           app_spec_default_location = File.join(archive_root_dir(deployment_spec), deployment_spec.app_spec_path)
           if File.exist? app_spec_default_location
-            log(:debug, "BBBBB Using appspec file #{app_spec_default_location}")
+            log(:debug, "Using appspec file #{app_spec_default_location}")
             app_spec_default_location
           elsif File.exist? app_spec_yaml_location
             log(:debug, "Using appspec file ${app_spec_yaml_location}")
